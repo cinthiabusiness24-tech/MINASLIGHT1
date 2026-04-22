@@ -32,6 +32,8 @@ export default function Navbar() {
         
         {/* LOGO */}
         <a href="#" className="flex items-center gap-3">
+          
+          {/* ÍCONE */}
           <div className="w-8 h-8 flex items-center justify-center overflow-hidden">
             <img
               src="https://i.imgur.com/IiMVefq.png"
@@ -40,12 +42,41 @@ export default function Navbar() {
             />
           </div>
 
-          <span
-            className="font-display text-[17px] font-semibold tracking-wide transition-all duration-300"
-            style={{ color: scrolled ? '#1E1E1E' : '#FFFFFF' }}
-          >
-            Minas <span className="text-gold-300">Light</span>
-          </span>
+          {/* TEXTO ESTILIZADO (MARCA) */}
+          <div className="h-[22px] flex items-center">
+            <svg
+              viewBox="0 0 200 40"
+              className="h-full"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{
+                color: scrolled ? '#1E1E1E' : '#FFFFFF'
+              }}
+            >
+              <text
+                x="0"
+                y="28"
+                fontFamily="Playfair Display, serif"
+                fontSize="26"
+                letterSpacing="2"
+                fill="currentColor"
+              >
+                MINAS
+              </text>
+
+              <text
+                x="110"
+                y="28"
+                fontFamily="Playfair Display, serif"
+                fontSize="26"
+                letterSpacing="2"
+                fill="#C6A96B"
+              >
+                LIGHT
+              </text>
+            </svg>
+          </div>
+
         </a>
 
         {/* MENU DESKTOP */}
@@ -100,7 +131,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* MENU MOBILE ABERTO */}
+      {/* MENU MOBILE */}
       {open && (
         <div className="md:hidden bg-cream-100 border-t border-cream-300 px-6 py-6 flex flex-col gap-5">
           {links.map(l => (
