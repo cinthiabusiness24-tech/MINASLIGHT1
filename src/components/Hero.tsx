@@ -19,7 +19,7 @@ export default function Hero() {
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(30,30,30,0.6) 0%, transparent 60%)' }} />
 
       {/* LOGO MOBILE DESTACADA */}
-<div className="md:hidden absolute top-11 left-3 z-40">
+<div className="md:hidden absolute top-11 left-2 z-40">
   <img
     src="https://i.imgur.com/sX5mhJw.png"
     alt="Minas Light"
