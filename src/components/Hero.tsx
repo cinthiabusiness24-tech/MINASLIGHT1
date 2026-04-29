@@ -39,8 +39,8 @@ export default function Hero() {
           </div>
 
           <h1 className="font-display text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] font-semibold leading-[1.12] mb-6 text-balance" style={{ color: '#F5F1EB' }}>
-            Transforme seu ambiente com{' '}
-            <em className="not-italic" style={{ color: '#C6A96B' }}>iluminação em tela tensionada</em>
+            TRANSFORME SEU AMBIENTE COM{' '}
+            <em className="not-italic" style={{ color: '#C6A96B' }}>ILUMINAÇÃO EM TELA TENSIONADA</em>
           </h1>
 
           <p className="text-[15px] md:text-[16px] leading-relaxed mb-10 font-light" style={{ color: '#E8DED1', opacity: 0.85 }}>
