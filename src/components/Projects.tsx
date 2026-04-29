@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const projects = [
@@ -37,9 +38,22 @@ export default function Projects() {
   const headerRef = useScrollReveal('reveal');
   const gridRef   = useScrollReveal('reveal', 120);
 
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  // fechar com ESC
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedImage(null);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, []);
+
   return (
     <section id="projetos" style={{ backgroundColor: '#F5F1EB' }} className="py-28">
       <div className="max-w-7xl mx-auto px-6 lg:px-14">
+
+        {/* HEADER */}
         <div ref={headerRef as React.RefObject<HTMLDivElement>} className="mb-14">
           <div className="flex items-center gap-3 mb-5">
             <span className="gold-bar" />
@@ -47,29 +61,55 @@ export default function Projects() {
               Galeria
             </span>
           </div>
+
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink leading-snug max-w-sm">
               Veja como fica na prática
             </h2>
+
             <p className="text-ink/50 text-[14px] leading-relaxed font-light max-w-xs md:text-right">
               Projetos em residências, comércios e espaços corporativos com acabamento impecável.
             </p>
           </div>
         </div>
 
+        {/* GRID */}
         <div
           ref={gridRef as React.RefObject<HTMLDivElement>}
           className="grid grid-cols-2 md:grid-cols-3 gap-3"
         >
           <div className="col-span-2 md:col-span-1 row-span-2">
-            <GalleryItem project={projects[0]} tall />
+            <GalleryItem project={projects[0]} tall onClick={setSelectedImage} />
           </div>
-          <div><GalleryItem project={projects[1]} /></div>
-          <div><GalleryItem project={projects[2]} /></div>
-          <div><GalleryItem project={projects[3]} /></div>
-          <div><GalleryItem project={projects[4]} /></div>
+
+          <div><GalleryItem project={projects[1]} onClick={setSelectedImage} /></div>
+          <div><GalleryItem project={projects[2]} onClick={setSelectedImage} /></div>
+          <div><GalleryItem project={projects[3]} onClick={setSelectedImage} /></div>
+          <div><GalleryItem project={projects[4]} onClick={setSelectedImage} /></div>
         </div>
       </div>
+
+      {/* LIGHTBOX */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            alt="Projeto"
+            className="max-w-full max-h-full object-contain rounded-md"
+          />
+
+          {/* BOTÃO FECHAR */}
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-6 right-6 text-white text-2xl"
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </section>
   );
 }
@@ -77,12 +117,15 @@ export default function Projects() {
 function GalleryItem({
   project,
   tall = false,
+  onClick,
 }: {
   project: (typeof projects)[number];
   tall?: boolean;
+  onClick: (img: string) => void;
 }) {
   return (
     <div
+      onClick={() => onClick(project.image)}
       className={`relative overflow-hidden group cursor-pointer ${
         tall ? 'h-full min-h-[360px] md:min-h-[530px]' : 'h-60 md:h-64'
       }`}
@@ -94,10 +137,16 @@ function GalleryItem({
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
         loading="lazy"
       />
+
       <div
         className="absolute inset-0 transition-opacity duration-300"
-        style={{ background: 'linear-gradient(to top, rgba(30,30,30,0.75) 0%, rgba(30,30,30,0.05) 55%)', opacity: 0.9 }}
+        style={{
+          background:
+            'linear-gradient(to top, rgba(30,30,30,0.75) 0%, rgba(30,30,30,0.05) 55%)',
+          opacity: 0.9,
+        }}
       />
+
       <div className="absolute bottom-0 left-0 right-0 p-5">
         <span
           className="text-[10px] font-medium tracking-[0.18em] uppercase"
@@ -105,6 +154,7 @@ function GalleryItem({
         >
           {project.category}
         </span>
+
         <p className="text-[13px] font-medium mt-1" style={{ color: '#F5F1EB' }}>
           {project.title}
         </p>
