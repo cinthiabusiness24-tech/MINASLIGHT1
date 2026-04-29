@@ -5,6 +5,8 @@ const WA = 'https://wa.me/5535988080999?text=Olá!%20Gostaria%20de%20solicitar%2
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-end overflow-hidden" style={{ backgroundColor: '#1E1E1E' }}>
+      
+      {/* BACKGROUND */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -12,11 +14,23 @@ export default function Hero() {
             'url(https://i.imgur.com/t9AHJIa.jpeg)',
         }}
       />
+
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(30,30,30,0.88) 40%, rgba(30,30,30,0.3) 100%)' }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(30,30,30,0.6) 0%, transparent 60%)' }} />
 
+      {/* LOGO MOBILE DESTACADA */}
+<div className="md:hidden absolute top-11 left-3 z-40">
+  <img
+    src="https://i.imgur.com/sX5mhJw.png"
+    alt="Minas Light"
+    className="w-[120px] object-contain"
+  />
+</div>
+
+      {/* CONTEÚDO */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 pb-28 pt-40">
         <div className="max-w-[600px]">
+
           <div className="flex items-center gap-3 mb-8">
             <span className="gold-bar" />
             <span className="text-[11px] font-medium tracking-[0.2em] uppercase" style={{ color: '#C6A96B' }}>
@@ -44,6 +58,7 @@ export default function Hero() {
               Solicitar orçamento
               <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
             </a>
+
             <a
               href="#projetos"
               className="inline-flex items-center justify-center text-[13px] font-medium px-7 py-4 transition-all duration-300 border"
@@ -57,6 +72,7 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* FADE FINAL */}
       <div
         className="absolute bottom-0 inset-x-0 h-28"
         style={{ background: 'linear-gradient(to top, #F5F1EB, transparent)' }}
