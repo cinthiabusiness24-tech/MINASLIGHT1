@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 
-const WA = 'https://wa.me/5535988080999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento.';
+const WA = 'https://wa.me/553534220999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento.';
 
 export default function Hero() {
   return (
